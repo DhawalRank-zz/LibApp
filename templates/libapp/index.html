@@ -1,0 +1,16 @@
+{% extends 'libapp/base.html' %}
+{% block myhdg %}Hello Dhawal Rank {% endblock %}
+{% block body_block %}
+            {% if itemlist %}
+        <h2>List of Library items</h2>
+        <ol>
+            {% for item in itemlist %}
+                <li> <a href="/app/{{ item.id }}"> {{ item.itemtype }} : {{ item }} {{ item.id }}</a></li>
+            {% endfor %}
+        </ol>
+
+    {% else %}
+        <strong>There are no available items!</strong>
+    {% endif %}
+
+{% endblock %}

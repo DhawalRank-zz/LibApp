@@ -1,0 +1,57 @@
+.hbar1 {
+    display: inline;
+    margin: 30px;
+}
+h1{
+    background-color: gray;
+    font-size: 200%;
+    color: blue;
+    font-family: Verdana;
+    text-align: left ;
+}
+body{
+	margin:0 auto;
+	min-width:980px;
+}
+h2{
+	font-weight:normal;
+	font-family:'Arail';
+	margin:0 auto;
+	min-width:980px;
+}
+h1{
+	font-family:'Verdana';
+}
+
+.dfinput{
+	width:180px;
+	height:28px;
+	line-height:34px;
+    border: 1px solid #a7b5bc;
+    border-right-color: #ced9df;
+    border-bottom-color: #ced9df;
+    text-indent:10px;}
+
+.btn{
+	width:137px;
+	height:35px;
+	font-size:14px;
+	font-weight:bold;
+	color: #0200ff;
+	cursor:pointer;
+}
+.divbg{
+	background:#e6f2ff;
+}
+.table-nonfluid {
+   width: 400px;
+}
+th, td{
+    text-align: center;
+}
+body {
+    padding-left: 7px
+}
+ul {
+	font-size: 23px
+}

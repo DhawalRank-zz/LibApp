@@ -1,0 +1,17 @@
+{% extends 'libapp/base.html' %}
+{% block myhdg %}Hello Dhawal Rank {% endblock %}
+{% block body_block %}
+<div style="width: 100%">
+        <h2>This is the Register page</h2>
+            <form action="" method="get" class=" col-xs-2">
+            <br><span style="font-size: medium; ">First name:</span><input type="text" name="fname" class="form-control" required />
+            <br><span style="font-size: medium; ">Last name:</span> <input type="text" name="lname" class="form-control" required />
+            <br><span style="font-size: medium; ">E-Mail:</span><input type="text" name="lname" class="form-control" required />
+            <br /><label><span style="font-size: medium; ">Gender</span></label>
+            <br><input type="radio" name="gender" value="male" checked /><span style="font-size: medium; "> Male</span>
+            <br><input type="radio" name="gender" value="female" /><span style="font-size: medium; "> Female</span>
+            <br/>
+            <br><input type="submit" value="Submit" class="btn form-control"/>
+        </form>
+</div>
+{% endblock %}
