@@ -21,19 +21,20 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
-                classob = Libitem.objects.filter(username=request.user.username)
-                userob = Libuser.objects.get(username=request.user.username)
-                request.session['userob'] = userob.username
-                return HttpResponseRedirect('/app/index/')
-        # else:
-        #     d = 'True'
-        #     return render(request, 'app/login/', {'notlogin': d})
-        # return render(request, 'app/login')
+            classob = Libitem.objects.filter(username=request.user.username)
+            userob = Libuser.objects.get(username=request.user.username)
+            request.session['userob'] = userob.username
+            return HttpResponseRedirect('/app/index/')
+            # else:
+            #     d = 'True'
+            #     return render(request, 'app/login/', {'notlogin': d})
+            # return render(request, 'app/login')
 
-@login_required
+
+# @login_required
 def index(request):
     itemlist = Libitem.objects.all().order_by('title')[:10]
-    return render(request, 'libapp/index.html', {'itemlist': itemlist})
+    return render(request, "libapp/index.html", {'itemlist': itemlist})
 
 
 def about(request):

@@ -3,26 +3,25 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/static/libapp/css/style.css" />
-            <link rel="stylesheet" type="text/css" href="/static/libapp/css/bootstrap.min.css"/>
-            <link rel="stylesheet" type="text/css" href="/static/libapp/css/bootstrap-responsive.min.css"/>
-            <script src="/static/libapp/jquery.min.js"></script>
-            <script type="text/javascript" src="/static/libapp/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href={% static "libapp/css/style.css" %} />
+            <link rel="stylesheet" type="text/css" href={% static "libapp/css/bootstrap.min.css" %}/>
+            <script src={% static "libapp/jquery.min.js"%}></script>
+            <script type="text/javascript" src={% static "libapp/js/bootstrap.min.js"%}></script>
 
         <title>MAC Library APP - {% block title %}Welcome!{% endblock %}</title>
     </head>
 
 
-    <body background="/static/libapp/css/bg.png">
+    <body background={% static "libapp/css/bg.png"%}>
     <div>
         <hr/>
 
          <div id="links-div" class="divbg">
              <ul class="nav nav-tabs">
-                 <li><a href="/app/index/">Home</a></li>
-                 <li><a href = "/app/about/">About</a></li>
-                 <li><a href = "/app/myacct/">My Account</a></li>
-                 <li><a href = "/app/register/">Register</a></li>
+                 <li><a href="{% url 'app:index' %}">Home</a></li>
+                 <li><a href = "{% url 'app:about' %}">About</a></li>
+                 <li><a href = "{% url 'app:myacct' %}">My Account</a></li>
+                 <li><a href = "{% url 'app:register' %}">Register</a></li>
              </ul>
         </div>
         <div>
@@ -37,7 +36,7 @@
     </div>
     <div>
             <ul>
-                <li class="hbar1"><a href="/app/about/">Find out about this site</a></li>
+                <li class="hbar1"><a href="{% url 'app:about' %}">Find out about this site</a></li>
                <li class="hbar1"><a href = "{% url 'app:index' %}">Click here to return to main page</a><br/></li>
             </ul>
         </div>

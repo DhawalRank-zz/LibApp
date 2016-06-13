@@ -6,13 +6,13 @@
     {% if dvd %}
     <h3>This is DVD item</h3>
         {% for dvds in dvd %}
-            Title: {{ dvds.title }}<br/>Duedate: {{ dvds.duedate }}<br/>Maker: {{ dvds.maker }}<br/>
+            Title: {{ dvds.title }}<br/>Publication Year: {{ dvds.pubyr }}<br/>Duedate: {{ dvds.duedate }}<br/>Maker: {{ dvds.maker }}<br/>
             Duration: {{ dvds.duration }}<br/>Rating:{{ dvds.rating }}<br/><br/><br/>
     {% endfor %}
     {% else %}
     <h3>This is Book item</h3>
         {% for books in book %}
-            Title: {{ books.title }}<br/>Duedate: {{ books.duedate }}<br/>Author: {{ books.author }}<br/>
+            Title: {{ books.title }}<br/>Publication Year: {{ books.pubyr }}<br/>Duedate: {{ books.duedate }}<br/>Author: {{ books.author }}<br/>
             Category: {{ books.category }}<br/><br/><br/>
     {% endfor %}
     {% endif %}
