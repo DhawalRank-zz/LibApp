@@ -3,10 +3,8 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from app.searchform import SearchlibForm
-from app.forms import SuggestionForm
+from app.forms import SuggestionForm, SearchlibForm
 from app.models import Book, Dvd, Libuser, Libitem, Suggestion
-import logging
 
 
 # Create your views here.

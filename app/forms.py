@@ -24,3 +24,10 @@ class SuggestionForm(forms.ModelForm):
     comments = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
 
 
+class SearchlibForm(forms.Form):
+    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Enter Title"}),
+                            label="")
+    author = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Enter Author/Maker"}), label="")
+
+
