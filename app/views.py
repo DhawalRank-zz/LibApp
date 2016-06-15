@@ -1,18 +1,17 @@
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-# Import necessary classes
-from django.http import HttpResponse
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
-
-from app.models import Book, Dvd, Libuser, Libitem
+from django.core.urlresolvers import reverse
+from app.searchform import SearchlibForm
+from app.forms import SuggestionForm
+from app.models import Book, Dvd, Libuser, Libitem, Suggestion
+import logging
 
 
 # Create your views here.
+
+
 @csrf_protect
 def login_user(request):
     if request.method == 'POST':
@@ -24,7 +23,7 @@ def login_user(request):
             classob = Libitem.objects.filter(username=request.user.username)
             userob = Libuser.objects.get(username=request.user.username)
             request.session['userob'] = userob.username
-            return HttpResponseRedirect('/app/index/')
+            return HttpResponseRedirect(reverse('app:suggestions'))
             # else:
             #     d = 'True'
             #     return render(request, 'app/login/', {'notlogin': d})
@@ -57,3 +56,84 @@ def myacct(request):
 
 def register(request):
     return render(request, 'libapp/register.html')
+
+
+def suggestions(request):
+    suggestionlist = Suggestion.objects.all()[:10]
+    return render(request, 'libapp/suggestions.html', {'itemlist': suggestionlist})
+
+
+def newitem(request):
+    suggestionsob = Suggestion.objects.all()
+    if request.method == 'POST':
+        form = SuggestionForm(request.POST)
+        if form.is_valid():
+            suggestion = form.save(commit=False)
+            suggestion.num_interested = 1
+            suggestion.save()
+            return HttpResponseRedirect('/app/suggestions/')
+        else:
+            return render(request, 'libapp/newitem.html', {'form': form, 'suggestions': suggestionsob})
+
+    else:
+        form = SuggestionForm()
+        return render(request, 'libapp/newitem.html', {'form': form, 'suggestions': suggestionsob})
+
+
+def searchitem(request):
+    if request.method == 'POST':
+        SearchlibForm(request.POST)
+        title1 = request.POST['title']
+        author1 = request.POST['author']
+        if title1 != '' and author1 != '':  # Title and User not null
+            bookob = Book.objects.filter(title__contains=title1, author__contains=author1)
+            dvdob = Dvd.objects.filter(title__contains=title1, maker__contains=author1)
+            form = SearchlibForm()
+            if bookob and dvdob:
+                return render(request, 'libapp/searchitem.html', {'bookob': bookob, 'dvdob': dvdob, 'form': form})
+            elif not bookob and dvdob:
+                return render(request, 'libapp/searchitem.html', {'dvdob': dvdob, 'form': form})
+            elif bookob and not dvdob:
+                return render(request, 'libapp/searchitem.html', {'bookob': bookob, 'form': form})
+            else:
+                return render(request, 'libapp/searchitem.html', {'notfound': True, 'form': form})
+
+        elif title1 != '' and author1 == '':  # Only Title searched
+            bookob = Book.objects.filter(title__contains=title1)
+            dvdob = Dvd.objects.filter(title__contains=title1)
+            form = SearchlibForm()
+            if bookob and dvdob:
+                return render(request, 'libapp/searchitem.html', {'bookob': bookob, 'dvdob': dvdob, 'form': form})
+            elif bookob and not dvdob:
+                return render(request, 'libapp/searchitem.html', {'bookob': bookob, 'form': form})
+            elif not bookob and dvdob:
+                return render(request, 'libapp/searchitem.html', {'dvdob': dvdob, 'form': form})
+            else:
+                return render(request, 'libapp/searchitem.html', {'notfound': True, 'form': form})
+
+        elif author1 != '' and title1 == '':    # Only Author searched
+            bookob = Book.objects.filter(author__contains=author1)
+            dvdob = Dvd.objects.filter(maker__contains=author1)
+            form = SearchlibForm()
+            if bookob and dvdob:
+                return render(request, 'libapp/searchitem.html', {'bookob': bookob, 'dvdob': dvdob, 'form': form})
+            elif bookob and not dvdob:
+                return render(request, 'libapp/searchitem.html', {'bookob': bookob, 'form': form})
+            elif not dvdob and bookob:
+                return render(request, 'libapp/searchitem.html', {'dvdob': dvdob, 'form': form})
+            else:
+                form = SearchlibForm()
+                return render(request, 'libapp/searchitem.html', {'notfound': True, 'form': form})
+
+        else:   # Author and Title null
+            form = SearchlibForm()
+            return render(request, 'libapp/searchitem.html', {'notinput': True, 'form': form})
+
+    else:
+        form = SearchlibForm()
+        return render(request, 'libapp/searchitem.html', {'form': form})
+
+
+def suggestionsdet(request, item_id):
+    suggestionsob = Suggestion.objects.filter(id=item_id)
+    return render(request, 'libapp/suggestionsdet.html', {'suggestionob': suggestionsob})

@@ -2,18 +2,16 @@
 {% block myhdg %}Hello Dhawal Rank {% endblock %}
 {% block body_block %}
 
-    <h3>This is Library APP</h3>
+    <h3>Details</h3>
     {% if dvd %}
-    <h3>This is DVD item</h3>
         {% for dvds in dvd %}
-            Title: {{ dvds.title }}<br/>Publication Year: {{ dvds.pubyr }}<br/>Duedate: {{ dvds.duedate }}<br/>Maker: {{ dvds.maker }}<br/>
+            Title: {{ dvds.title }}<br/>Type: {{ dvds.get_itemtype_display }}<br/>Publication Year: {{ dvds.pubyr }}<br/>Duedate: {{ dvds.duedate }}<br/>Maker: {{ dvds.maker }}<br/>
             Duration: {{ dvds.duration }}<br/>Rating:{{ dvds.rating }}<br/><br/><br/>
     {% endfor %}
     {% else %}
-    <h3>This is Book item</h3>
         {% for books in book %}
-            Title: {{ books.title }}<br/>Publication Year: {{ books.pubyr }}<br/>Duedate: {{ books.duedate }}<br/>Author: {{ books.author }}<br/>
-            Category: {{ books.category }}<br/><br/><br/>
+            Title: {{ books.title }}<br/>Type: {{ books.get_itemtype_display }}<br/>Publication Year: {{ books.pubyr }}<br/>Duedate: {{ books.duedate }}<br/>Author: {{ books.author }}<br/>
+            Category: {{ books.get_category_display }}<br/><br/><br/>
     {% endfor %}
     {% endif %}
 {% endblock %}

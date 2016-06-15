@@ -54,3 +54,4 @@ class DvdAdmin(admin.ModelAdmin):
 admin.site.register(Book, BookAdmin)
 admin.site.register(Libuser, LibuserAdmin)
 admin.site.register(Dvd, DvdAdmin)
+admin.site.register(Suggestion)

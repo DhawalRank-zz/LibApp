@@ -22,23 +22,30 @@
                  <li><a href = "{% url 'app:about' %}">About</a></li>
                  <li><a href = "{% url 'app:myacct' %}">My Account</a></li>
                  <li><a href = "{% url 'app:register' %}">Register</a></li>
+                 <li><a href = "{% url 'app:suggestions' %}">Suggestions</a></li>
+                 <li><a href = "{% url 'app:newitem' %}">Add Sugggestions</a></li>
+                 <li><a href = "{% url 'app:searchitem' %}">Search the library</a></li>
+
              </ul>
         </div>
-        <div>
         <br/>
         <div>
             <h1>{% block myhdg %}Hello User {% endblock %}</h1><br/><br/>
+
             {% block body_block %}*** {% endblock %}
-        </div>
+        {% block footer %}
+    <div>
+     </div>
         <hr />
 
         </div>
-    </div>
-    <div>
             <ul>
                 <li class="hbar1"><a href="{% url 'app:about' %}">Find out about this site</a></li>
                <li class="hbar1"><a href = "{% url 'app:index' %}">Click here to return to main page</a><br/></li>
             </ul>
-        </div>
+        </div>{% endblock %}
+
+    </div>
+    </div>
     </body>
 </html>

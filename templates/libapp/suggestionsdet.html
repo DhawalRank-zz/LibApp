@@ -1,0 +1,13 @@
+{% extends 'libapp/base.html' %}
+{% block myhdg %}Hello Dhawal Rank {% endblock %}
+{% block body_block %}
+{% for item in suggestionob %}
+    Title: {{ item.title }}<br/>
+    Publication Year: {{ item.pubyr }}<br>
+    Item Type: {{ item.get_type_display}}<br/>
+    Cost(CAD): {{ item.cost }}<br/>
+    Comments: {{ item.comments }}<br/>
+    Number of Suggestions: {{ item.num_interested }}<br/><br/>
+    <a href="/app/suggestions/" style="text-decoration: underline; font-size: 110%">Go Back</a>
+    {% endfor %}
+{% endblock %}

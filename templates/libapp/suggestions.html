@@ -1,0 +1,9 @@
+{% extends 'libapp/base.html' %}
+{% block myhdg %}Hello Dhawal Rank {% endblock %}
+{% block body_block %}
+        {% for slist in itemlist %}
+    <li><a href="{% url 'app:suggestions' %}{{ slist.id }}" style="text-decoration: underline; font-size: 130%">{{ slist.title }}
+    {% endfor %}<br/>
+
+
+{% endblock %}

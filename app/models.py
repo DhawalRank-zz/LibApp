@@ -40,7 +40,7 @@ class Libitem(models.Model):
         return self.title + ' is '
 
     def overdue(self):
-        if self.checked_out:
+        if self.checked_out and self.duedate:
             if self.duedate < datetime.date.today():
                 return 'Yes'
             else:
@@ -79,4 +79,23 @@ class Dvd(Libitem):
 
     def __str__(self):
         return self.maker + ' with ' + self.rating
+
+
+class Suggestion(models.Model):
+    TYPE_CHOICES = (
+        (1, 'Book'),
+        (2, 'DVD'),
+        (3, 'Other'),
+    )
+    title = models.CharField(max_length=100)
+    pubyr = models.IntegerField(null=True, blank=True)
+    type = models.IntegerField(default=1, choices=TYPE_CHOICES)
+    cost = models.IntegerField()
+    num_interested = models.IntegerField()
+    comments = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
 
