@@ -1,9 +1,11 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from app.forms import SuggestionForm, SearchlibForm
+from django.core import serializers
+from app.forms import SuggestionForm, SearchlibForm, LoginForm
 from app.models import Book, Dvd, Libuser, Libitem, Suggestion
 
 
@@ -12,26 +14,37 @@ from app.models import Book, Dvd, Libuser, Libitem, Suggestion
 
 @csrf_protect
 def login_user(request):
+    form = LoginForm()
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
-            classob = Libitem.objects.filter(username=request.user.username)
-            userob = Libuser.objects.get(username=request.user.username)
-            request.session['userob'] = userob.username
-            return HttpResponseRedirect(reverse('app:suggestions'))
-            # else:
-            #     d = 'True'
-            #     return render(request, 'app/login/', {'notlogin': d})
-            # return render(request, 'app/login')
+            userob = Libuser.objects.filter(username=request.user.username)
+            request.session['userob'] = serializers.serialize('json', userob)
+            return HttpResponseRedirect('/app/index/')
+        elif user is None:
+            return render(request, 'libapp/login.html', {'notlogin': True, 'form': form})
+        else:
+            return render(request, 'libapp/login.html', {'notactive': True, 'form': form})
+    else:
+        return render(request, 'libapp/login.html', {'form': form})
 
 
-# @login_required
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+
 def index(request):
     itemlist = Libitem.objects.all().order_by('title')[:10]
-    return render(request, "libapp/index.html", {'itemlist': itemlist})
+    if request.user.username:
+        itemlistper = Libitem.objects.filter(user_id__exact=request.user.id)
+        return render(request, "libapp/index.html", {'itemlist': itemlist, 'itemlistper': itemlistper})
+    else:
+        return render(request, "libapp/index.html", {'itemlist': itemlist})
 
 
 def about(request):
@@ -46,10 +59,6 @@ def detail(request, item_id):
     else:
         dvd = get_list_or_404(Dvd, id=item_id)
         return render(request, 'libapp/detail.html', {'dvd': dvd})
-
-
-def myacct(request):
-    return render(request, 'libapp/myacct.html')
 
 
 def register(request):
@@ -80,7 +89,6 @@ def newitem(request):
 
 def searchitem(request):
     if request.method == 'POST':
-        SearchlibForm(request.POST)
         title1 = request.POST['title']
         author1 = request.POST['author']
         if title1 != '' and author1 != '':  # Title and User not null
@@ -109,7 +117,7 @@ def searchitem(request):
             else:
                 return render(request, 'libapp/searchitem.html', {'notfound': True, 'form': form})
 
-        elif author1 != '' and title1 == '':    # Only Author searched
+        elif author1 != '' and title1 == '':  # Only Author searched
             bookob = Book.objects.filter(author__contains=author1)
             dvdob = Dvd.objects.filter(maker__contains=author1)
             form = SearchlibForm()
@@ -123,7 +131,7 @@ def searchitem(request):
                 form = SearchlibForm()
                 return render(request, 'libapp/searchitem.html', {'notfound': True, 'form': form})
 
-        else:   # Author and Title null
+        else:  # Author and Title null
             form = SearchlibForm()
             return render(request, 'libapp/searchitem.html', {'notinput': True, 'form': form})
 
@@ -135,3 +143,26 @@ def searchitem(request):
 def suggestionsdet(request, item_id):
     suggestionsob = Suggestion.objects.filter(id=item_id)
     return render(request, 'libapp/suggestionsdet.html', {'suggestionob': suggestionsob})
+
+
+def myacct(request):
+    userob = Libuser.objects.get(id=request.user.id)
+    d = {'first_name': userob.first_name, 'last_name': userob.last_name, 'emailid': userob.email,
+         'address': userob.address, 'city': userob.city, 'province': userob.province, 'phone': userob.phone}
+    if request.method == 'POST':
+        userob = Libuser.objects.filter(id=request.user.id).update(
+            first_name=request.POST['first_name'],
+            last_name=request.POST['last_name'],
+            email=request.POST['emailid'],
+            address=request.POST['address'],
+            city=request.POST['city'],
+            province=request.POST['province'],
+            phone=request.POST['phone']
+        )
+        userob = Libuser.objects.get(id=request.user.id)
+        d = {'first_name': userob.first_name, 'last_name': userob.last_name, 'emailid': userob.email,
+             'address': userob.address, 'city': userob.city, 'privince': userob.province, 'phone': userob.phone}
+        d1 = 'True'
+        return render(request, 'libapp/myacct.html', {"values": d, "record_added": d1})
+    else:
+        return render(request, 'libapp/myacct.html', {"values": d})

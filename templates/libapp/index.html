@@ -1,5 +1,4 @@
 {% extends 'libapp/base.html' %}
-{% block myhdg %}Hello Dhawal Rank {% endblock %}
 {% block body_block %}
             {% if itemlist %}
         <h2>List of Library items</h2>
@@ -9,9 +8,15 @@
                 <li> <a href="{% url 'app:index' %}{{ item.id }}"> {{ item.get_itemtype_display }} : {{ item.title }}</a></li>
             {% endfor %}
         </ol>
-
     {% else %}
         <strong>There are no available items!</strong>
     {% endif %}
-
+    {% if itemlistper %}
+        <h2>List of User items</h2>
+        <ol>
+                {% for item in itemlistper %}
+                <li> <a href="{% url 'app:index' %}{{ item.id }}"> {{ item.get_itemtype_display }} : {{ item.title }}</a></li>
+            {% endfor %}
+                {% endif %}
+</ol>
 {% endblock %}

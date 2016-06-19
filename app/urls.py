@@ -12,4 +12,6 @@ urlpatterns = [
         url(r'^suggestions/(?P<item_id>[0-9]+?)/$', views.suggestionsdet, name='suggestionsdet'),
         url(r'^newitem/$', views.newitem, name='newitem'),
         url(r'^searchitem/$', views.searchitem, name='searchitem'),
+        url(r'^login/$', views.login_user, name='login'),
+        url(r'^logout/$', views.user_logout, name='logout')
     ]

@@ -31,3 +31,11 @@ class SearchlibForm(forms.Form):
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Enter Author/Maker"}), label="")
 
 
+class LoginForm(forms.Form):
+    username = forms.CharField(widget=
+                               forms.TextInput(
+                                   attrs={'required': True, 'class': 'form-control', 'placeholder': 'Enter Username'}),
+                               label="")
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'required': True, 'class': 'form-control', 'placeholder': 'Enter Password'}),
+        label="")

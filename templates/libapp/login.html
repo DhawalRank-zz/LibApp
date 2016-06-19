@@ -1,0 +1,22 @@
+{% extends 'libapp/base.html' %}
+{% block body_block %}
+    <div style="padding-left: 15%; padding-top: 3%">
+    <div class="form-control" style="width: 15%;  height: 300px; border-radius: 5px" align="center">
+        {{ form.errors }}
+    {% if notlogin %}
+        <p style="font-size: 12px">Enter correct Username or Password</p>
+        {% endif %}
+    {% if inactive %}
+        <p style="font-size: 12px">User is inactive. Register again!</p>
+        {% endif %}
+        <h3>Please Login!</h3><br/>
+<form action="." method="post">{% csrf_token %}
+
+        {{ form.as_p }}<br/>
+        <button type="submit" class="btn btn-primary btn-block" value="LogIn">LogIN</button><br/>
+        <a href="/app/forgotpassword/">Forgot Password?</a>
+
+</form>
+            </div>
+    </div>
+{% endblock %}

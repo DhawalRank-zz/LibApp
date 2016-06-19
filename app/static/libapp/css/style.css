@@ -3,24 +3,16 @@
     margin: 30px;
 }
 h1{
-    background-color: gray;
     font-size: 200%;
     color: blue;
-    font-family: Verdana;
+    font-family: Verdana, serif;
     text-align: left ;
-}
-body{
-	margin:0 auto;
-	min-width:980px;
 }
 h2{
 	font-weight:normal;
 	font-family:'Arail';
 	margin:0 auto;
 	min-width:980px;
-}
-h1{
-	font-family:'Verdana';
 }
 
 .dfinput{
@@ -32,14 +24,7 @@ h1{
     border-bottom-color: #ced9df;
     text-indent:10px;}
 
-.btn{
-	width:137px;
-	height:35px;
-	font-size:14px;
-	font-weight:bold;
-	color: #0200ff;
-	cursor:pointer;
-}
+
 .divbg{
 	background:#e6f2ff;
 }
@@ -48,9 +33,6 @@ h1{
 }
 th, td{
     text-align: center;
-}
-body {
-    padding-left: 7px
 }
 ul {
 	font-size: 23px

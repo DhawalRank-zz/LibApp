@@ -1,5 +1,55 @@
 {% extends 'libapp/base.html' %}
-{% block myhdg %}Hello Dhawal Rank {% endblock %}
 {% block body_block %}
-        <h2>This is the My Account page</h2>
+    <div style="padding-left: 40%">
+    {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-error">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-error">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+        {% if record_added == 'True' %}
+   <div id="alert1" class="alert alert-success fade in" style="width: 30%; border-radius: 5px" align="center">
+   <a href="/app/myacct/" id="close1" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Record Updated.</strong>
+    </div>
+    {% endif %}
+    <form action="." method="post" id="aclass">{% csrf_token %}
+    <div class="form-control" style="width: 30%;  height: 690px; border-radius: 5px" align="center">
+        <p style="font-size: 25px; font-weight: bold">Edit Profile</p><br>
+        <div class="form-group">
+            <input type="text" name="first_name" id="first_name" value="{{ values.first_name }}" placeholder="Enter First Name" class="form-control">
+        </div><br>
+        <div class="form-group">
+            <input type="text" name="last_name" id="last_name" value="{{ values.last_name }}" placeholder="Enter Last Name" class="form-control">
+        </div><br>
+        <div class="form-group">
+            <input type="text" name="emailid" id="emailid" value="{{ values.emailid }}" placeholder="Enter Email ID" class="form-control">
+        </div><br>
+        <div class="form-group">
+        <input type="text" name="address" id="address" value="{{ values.address }}" placeholder="Enter Address" class="form-control">
+        </div><br>
+        <div class="form-group">
+        <input type="text" name="city" id="city" value="{{ values.city }}" placeholder="Enter City" class="form-control">
+        </div><br>
+        <div class="form-group">
+    <input type="text" name="province" id="province" value="{{ values.province }}" placeholder="Enter Province" class="form-control">
+        </div><br>
+        <div class="form-group">
+    <input type="text" name="phone" id="phone" value="{{ values.phone }}" placeholder="Enter Phone" class="form-control">
+        </div><br>
+        <br>
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg" value="Submit">Submit</button>
+    </div>
+        </div>
+    </form>
+    </div>
 {% endblock %}

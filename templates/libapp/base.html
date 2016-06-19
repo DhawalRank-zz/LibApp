@@ -2,50 +2,65 @@
 {% load staticfiles %}
 
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href={% static "libapp/css/style.css" %} />
-            <link rel="stylesheet" type="text/css" href={% static "libapp/css/bootstrap.min.css" %}/>
-            <script src={% static "libapp/jquery.min.js"%}></script>
-            <script type="text/javascript" src={% static "libapp/js/bootstrap.min.js"%}></script>
+    <head>{% block head %}
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<script type="text/javascript" src="{% static 'libapp/jquery.min.js'%}"></script>
+<!-- Latest compiled and minified JavaScript -->
+        <link rel="stylesheet" type="text/css" href="{% static 'libapp/css/style.css' %}" />
+            <link rel="stylesheet" type="text/css" href="{% static 'libapp/css/bootstrap.min.css'%}"/>
+
+            <script type="text/javascript" src="{% static 'libapp/js/bootstrap.min.js'%}"></script>
 
         <title>MAC Library APP - {% block title %}Welcome!{% endblock %}</title>
-    </head>
+    </head>{% endblock %}
 
 
-    <body background={% static "libapp/css/bg.png"%}>
-    <div>
-        <hr/>
-
-         <div id="links-div" class="divbg">
-             <ul class="nav nav-tabs">
+    <body background="{% static 'libapp/css/bg.png'%}">
+         <nav class="navbar navbar-inverse navbar-static-top" style="padding-left: 0px">
+            <div class="container-fluid">
+                 {% if request.user.username %}
+                     <ul class="nav navbar-nav">
                  <li><a href="{% url 'app:index' %}">Home</a></li>
                  <li><a href = "{% url 'app:about' %}">About</a></li>
-                 <li><a href = "{% url 'app:myacct' %}">My Account</a></li>
-                 <li><a href = "{% url 'app:register' %}">Register</a></li>
-                 <li><a href = "{% url 'app:suggestions' %}">Suggestions</a></li>
-                 <li><a href = "{% url 'app:newitem' %}">Add Sugggestions</a></li>
-                 <li><a href = "{% url 'app:searchitem' %}">Search the library</a></li>
-
-             </ul>
-        </div>
-        <br/>
+                    <li><a href = "{% url 'app:suggestions' %}">Suggestions</a></li>
+                    <li><a href = "{% url 'app:newitem' %}">Add Sugggestions</a></li>
+                    <li><a href = "{% url 'app:searchitem' %}">Search the library</a></li>
+                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'app:myacct' %}"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+                        <li><a href="{% url 'app:logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </ul>
+                 {% else %}
+                     <ul class="nav navbar-nav">
+                 <li><a href="{% url 'app:index' %}">Home</a></li>
+                 <li><a href = "{% url 'app:about' %}">About</a></li>
+                    <li><a href = "{% url 'app:suggestions' %}">Suggestions</a></li>
+                     <li><a href = "{% url 'app:newitem' %}">Add Sugggestions</a></li>
+                    <li><a href = "{% url 'app:searchitem' %}">Search the library</a></li>
+                     </ul>
+                     <ul class="nav navbar-nav navbar-right">
+                         <li><a href = "{% url 'app:login' %}">Login</a></li>
+                         <li><a href = "{% url 'app:register' %}">Register</a></li>
+                     </ul>
+                 {% endif %}
+                </div>
+                </nav>
         <div>
-            <h1>{% block myhdg %}Hello User {% endblock %}</h1><br/><br/>
-
+        {% if request.user.username %}
+            <h1>{% block myhdg %}Hello {{ request.user.first_name }} {{ request.user.last_name }} {% endblock %}</h1><br/><br/>
+        {% endif %}
+        </div>
+         <div style="padding-left: 7px">
             {% block body_block %}*** {% endblock %}
-        {% block footer %}
-    <div>
-     </div>
         <hr />
 
-        </div>
+
             <ul>
                 <li class="hbar1"><a href="{% url 'app:about' %}">Find out about this site</a></li>
                <li class="hbar1"><a href = "{% url 'app:index' %}">Click here to return to main page</a><br/></li>
             </ul>
-        </div>{% endblock %}
-
-    </div>
-    </div>
+        </div>
     </body>
 </html>
