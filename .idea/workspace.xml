@@ -2,29 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="744f5bbf-69ce-465f-b347-47781fca88a6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/libapp/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/libapp/fonts/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/app/static/libapp/fonts/glyphicons-halflings-regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/libapp/fonts/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/app/static/libapp/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/libapp/fonts/glyphicons-halflings-regular.woff" afterPath="$PROJECT_DIR$/app/static/libapp/fonts/glyphicons-halflings-regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/libapp/fonts/glyphicons-halflings-regular.woff2" afterPath="$PROJECT_DIR$/app/static/libapp/fonts/glyphicons-halflings-regular.woff2" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libapp" afterPath="$PROJECT_DIR$/libapp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lab2Django/settings.py" afterPath="$PROJECT_DIR$/Lab2Django/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/forms.py" afterPath="$PROJECT_DIR$/app/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/libapp/css/bootstrap.css" afterPath="$PROJECT_DIR$/app/static/libapp/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/libapp/css/style.css" afterPath="$PROJECT_DIR$/app/static/libapp/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/urls.py" afterPath="$PROJECT_DIR$/app/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libapp/about.html" afterPath="$PROJECT_DIR$/templates/libapp/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libapp/base.html" afterPath="$PROJECT_DIR$/templates/libapp/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libapp/detail.html" afterPath="$PROJECT_DIR$/templates/libapp/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libapp/index.html" afterPath="$PROJECT_DIR$/templates/libapp/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libapp/myacct.html" afterPath="$PROJECT_DIR$/templates/libapp/myacct.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libapp/newitem.html" afterPath="$PROJECT_DIR$/templates/libapp/newitem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libapp/register.html" afterPath="$PROJECT_DIR$/templates/libapp/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libapp/searchitem.html" afterPath="$PROJECT_DIR$/templates/libapp/searchitem.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libapp/suggestions.html" afterPath="$PROJECT_DIR$/templates/libapp/suggestions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libapp/suggestionsdet.html" afterPath="$PROJECT_DIR$/templates/libapp/suggestionsdet.html" />
     </list>
     <ignored path="Lab2Django.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -112,7 +92,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="462">
               <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
@@ -131,11 +111,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/libapp/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+            <state relative-caret-position="381">
+              <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="suggestions.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/libapp/suggestions.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" column="138" selection-start-line="3" selection-start-column="138" selection-end-line="3" selection-end-column="138" />
               <folding />
             </state>
           </provider>
@@ -187,7 +177,6 @@
         <option value="$PROJECT_DIR$/templates/libapp/myacct.html" />
         <option value="$PROJECT_DIR$/templates/libapp/newitem.html" />
         <option value="$PROJECT_DIR$/templates/libapp/searchitem.html" />
-        <option value="$PROJECT_DIR$/templates/libapp/suggestions.html" />
         <option value="$PROJECT_DIR$/templates/libapp/suggestionsdet.html" />
         <option value="$PROJECT_DIR$/Lab2Django/settings.py" />
         <option value="$PROJECT_DIR$/app/views.py" />
@@ -195,6 +184,7 @@
         <option value="$PROJECT_DIR$/templates/libapp/index.html" />
         <option value="$PROJECT_DIR$/app/static/libapp/css/style.css" />
         <option value="$PROJECT_DIR$/templates/libapp/base.html" />
+        <option value="$PROJECT_DIR$/templates/libapp/suggestions.html" />
       </list>
     </option>
   </component>
@@ -207,7 +197,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
-    <option name="width" value="1932" />
+    <option name="width" value="1938" />
     <option name="height" value="1048" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -718,10 +708,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1932" height="1048" extended-state="0" />
-    <editor active="false" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15231432" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15208334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2054176" sideWeight="0.51287556" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.68070954" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -730,13 +720,13 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="manage.py@LibApp" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2054176" sideWeight="0.48712447" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@LibApp" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20431328" sideWeight="0.48712447" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="manage.py@Lab2Django" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.49583334" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31376976" sideWeight="0.49785408" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31328037" sideWeight="0.49785408" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.48541668" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1021,14 +1011,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/libapp/suggestions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/libapp/suggestionsdet.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1095,7 +1077,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="462">
           <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
@@ -1137,8 +1119,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/libapp/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+        <state relative-caret-position="381">
+          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1147,6 +1129,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="35420">
           <caret line="1610" column="0" selection-start-line="1610" selection-start-column="0" selection-end-line="1610" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/libapp/suggestions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="138" selection-start-line="3" selection-start-column="138" selection-end-line="3" selection-end-column="138" />
           <folding />
         </state>
       </provider>

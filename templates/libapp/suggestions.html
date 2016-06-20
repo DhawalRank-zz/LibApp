@@ -1,7 +1,7 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
         {% for slist in itemlist %}
-    <li><a href="{% url 'app:suggestions' %}{{ slist.id }}" style="text-decoration: underline; font-size: 130%">{{ slist.title }}
+    <li><a href="{% url 'app:suggestions' %}{{ slist.id }}" style="text-decoration: underline; font-size: 130%">{{ slist.title }}</a></li>
     {% endfor %}<br/>
 
 
