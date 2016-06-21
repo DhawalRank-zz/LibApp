@@ -1,9 +1,10 @@
+from random import randint
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
 from django.core import serializers
 from app.forms import SuggestionForm, SearchlibForm, LoginForm
 from app.models import Book, Dvd, Libuser, Libitem, Suggestion
@@ -21,6 +22,9 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
+            luckynum = randint(0, 9)
+            request.session['luckynum'] = luckynum
+            request.session.set_expiry(3600)
             userob = Libuser.objects.filter(username=request.user.username)
             request.session['userob'] = serializers.serialize('json', userob)
             return HttpResponseRedirect('/app/index/')
@@ -39,16 +43,25 @@ def user_logout(request):
 
 
 def index(request):
+    luckynum = request.session.get('luckynum', 0)
     itemlist = Libitem.objects.all().order_by('title')[:10]
-    if request.user.username:
-        itemlistper = Libitem.objects.filter(user_id__exact=request.user.id)
-        return render(request, "libapp/index.html", {'itemlist': itemlist, 'itemlistper': itemlistper})
+    if luckynum:
+        if request.user.username:
+            itemlistper = Libitem.objects.filter(user_id__exact=request.user.id)
+            return render(request, "libapp/index.html", {'itemlist': itemlist, 'itemlistper': itemlistper, 'luckynum': luckynum})
     else:
-        return render(request, "libapp/index.html", {'itemlist': itemlist})
+        return render(request, "libapp/index.html", {'itemlist': itemlist, 'luckynum': luckynum})
 
 
 def about(request):
-    return render(request, 'libapp/about.html')
+    about_visits = request.session.get('about_visits', 1)
+    if about_visits:
+        about_visits += 1
+        request.session['about_visits'] = about_visits
+        request.session.set_expiry(300)
+        return render(request, 'libapp/about.html', {'about_visits': about_visits})
+    else:
+        return render(request, 'libapp/about.html', {'about_visits': about_visits})
 
 
 def detail(request, item_id):
@@ -145,6 +158,7 @@ def suggestionsdet(request, item_id):
     return render(request, 'libapp/suggestionsdet.html', {'suggestionob': suggestionsob})
 
 
+@login_required
 def myacct(request):
     userob = Libuser.objects.get(id=request.user.id)
     d = {'first_name': userob.first_name, 'last_name': userob.last_name, 'emailid': userob.email,
@@ -166,3 +180,8 @@ def myacct(request):
         return render(request, 'libapp/myacct.html', {"values": d, "record_added": d1})
     else:
         return render(request, 'libapp/myacct.html', {"values": d})
+
+
+def myitems(request):
+    itemob = Libitem.objects.filter(user__username=request.user.username, checked_out=True)
+    return render(request, 'libapp/myitem.html', {'itemob': itemob})

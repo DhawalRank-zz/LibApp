@@ -13,5 +13,7 @@ urlpatterns = [
         url(r'^newitem/$', views.newitem, name='newitem'),
         url(r'^searchitem/$', views.searchitem, name='searchitem'),
         url(r'^login/$', views.login_user, name='login'),
-        url(r'^logout/$', views.user_logout, name='logout')
+        url(r'^logout/$', views.user_logout, name='logout'),
+        url(r'^myitems/$', views.myitems, name='myitems'),
+        url(r'^myitems/(?P<item_id>[0-9]+?)/$', views.detail, name='myitems'),
     ]

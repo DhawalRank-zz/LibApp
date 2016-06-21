@@ -22,5 +22,4 @@ urlpatterns = [
     url(r'^$', index),
     url(r'^admin/', admin.site.urls),
     url(r'^app/', include('app.urls', namespace='app')),
-
 ]

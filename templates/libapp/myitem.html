@@ -1,0 +1,14 @@
+{% extends 'libapp/base.html' %}
+{% block body_block %}
+{% if itemob and request.user.username %}
+    <h2>Checked out items</h2><br/>
+    <ol>
+    {% for item in itemob %}
+        <li><a href="/app/myitems/{{ item.id }}"> {{ item.title }}</a></li>
+    {% endfor %}
+    </ol>
+    {% else %}
+    <h3>You need to Login to access this page</h3>
+{% endif %}
+
+{% endblock %}

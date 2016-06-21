@@ -18,7 +18,7 @@ class Libuser(User):
     phone = models.IntegerField(null=True)
 
     def __str__(self):
-        return self.first_name
+        return self.username
 
 
 class Libitem(models.Model):
@@ -37,7 +37,7 @@ class Libitem(models.Model):
     pubyr = models.IntegerField()
 
     def __str__(self):
-        return self.title + ' is '
+        return self.title
 
     def overdue(self):
         if self.checked_out and self.duedate:

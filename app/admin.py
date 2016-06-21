@@ -33,7 +33,8 @@ class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'borrower', 'overdue')
     actions = [renew]
 
-    def borrower(self, obj=None):
+    @staticmethod
+    def borrower(obj=None):
         if obj.checked_out:
             return obj.user  # Returns the user who has borrowed this book
         else:
@@ -45,13 +46,16 @@ class DvdAdmin(admin.ModelAdmin):
     list_display = ('title', 'rating', 'borrower', 'overdue')
     actions = [renew]
 
-    def borrower(self, obj=None):
+    @staticmethod
+    def borrower(obj=None):
         if obj.checked_out:
             return obj.user  # Returns the user who has borrowed this book
         else:
             return ''
 
 admin.site.register(Book, BookAdmin)
-admin.site.register(Libuser, LibuserAdmin)
+# admin.site.register(Libuser, LibuserAdmin)
 admin.site.register(Dvd, DvdAdmin)
 admin.site.register(Suggestion)
+admin.site.register(Libuser)
+admin.site.register(Libitem)
