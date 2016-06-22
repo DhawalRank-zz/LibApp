@@ -1,0 +1,72 @@
+.span-logo {
+    display: inline-block;
+    padding-top: 11px;
+    width: 35px;
+}
+.circular-pic{
+    border-radius: 20px;
+}
+.cyan {
+    background-color: whitesmoke !important;
+}
+.btnpink, .btnpink-large {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #ff4081;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: 0.2s ease-out;
+    -moz-transition: 0.2s ease-out;
+    -o-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+    cursor: pointer;
+}
+.btnpink, .btnpink-large, .btnpink-flat {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    outline: 0;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    will-change: opacity, transform;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.collection{
+    margin: 0.5rem 0 1rem 0;
+    border: 0px;
+    border-radius: 0px;
+    color: white;
+}
+.collection-item{
+    background: none;
+    color: white;
+}
+.nav, .nav-wrapper{
+      background-color: black;
+}
+body{
+    background: url('/app/static/ProfilePics/asas4.jpg') no-repeat;
+}
+li{
+    color: white;
+}

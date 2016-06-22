@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 import datetime
 from django.contrib.auth.models import User
+from sorl.thumbnail import ImageField
 
 
 class Libuser(User):
@@ -16,6 +17,8 @@ class Libuser(User):
     city = models.CharField(max_length=20, default='Windsor')
     province = models.CharField(max_length=2, choices=PROVINCE_CHOICES, default='ON')
     phone = models.IntegerField(null=True)
+    profilepic = ImageField(max_length=100, default='/app/static/ProfilePics/defaultpic.png',
+                            upload_to='app/static/ProfilePics/')
 
     def __str__(self):
         return self.username
@@ -96,6 +99,3 @@ class Suggestion(models.Model):
 
     def __str__(self):
         return self.title
-
-
-

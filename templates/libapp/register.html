@@ -1,16 +1,16 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
-<div style="width: 18%">
-        <h2>This is the Register page</h2>
-            <form action="" method="post">
-            <br><span style="font-size: medium; ">First name:</span><input type="text" name="fname" class="form-control" required />
-            <br><span style="font-size: medium; ">Last name:</span> <input type="text" name="lname" class="form-control" required />
-            <br><span style="font-size: medium; ">E-Mail:</span><input type="text" name="lname" class="form-control" required />
-            <br /><label><span style="font-size: medium; ">Gender</span></label>
-            <br><input type="radio" name="gender" value="male" checked /><span style="font-size: medium; "> Male</span>
-            <br><input type="radio" name="gender" value="female" /><span style="font-size: medium; "> Female</span>
-            <br/>
-            <br><input type="submit" value="Submit" class="btn form-control"/>
+    <div align="center">
+<div style="width: 25%; align-items: center; padding-top: 3%" align="center">
+    <div class="col s12 z-depth-5 card-panel">
+        <h4>Registration Form!</h4><br/><br/>
+        <div style="width: 75%">
+            <form action="/app/register/" method="post">
+                {{ form.as_p }}<br/>
+            <br><input type="submit" value="Submit" class="btnpink col s12"/>
         </form>
+            </div>
+    </div>
+    </div>
 </div>
 {% endblock %}

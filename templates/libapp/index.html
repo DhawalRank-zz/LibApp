@@ -1,27 +1,26 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
+    <div class="collection">
             {% if itemlist %}
-        <h2>List of Library items</h2>
-        <ol>
+        <h4>List of Library items</h4>
+        <ul type="">
             {% for item in itemlist %}
-
-                <li> <a href="{% url 'app:index' %}{{ item.id }}"> {{ item.get_itemtype_display }} : {{ item.title }}</a></li>
+            {% if item.itemtype == 'Book' %}
+                <li> <a href="{% url 'app:index' %}{{ item.id }}" class="collection-item" style="background: none; color: whitesmoke"><i class="material-icons" style="color: #e1f5fe">library_books</i>&nbsp; &nbsp;{{ item.title }}</a></li>
+                {% elif item.itemtype == 'DVD' %}
+                <li> <a href="{% url 'app:index' %}{{ item.id }}" class="collection-item" style="background:none; color: whitesmoke" ><i class="material-icons" style="color: #e1f5fe">play_circle_outline</i>&nbsp;&nbsp;{{ item.title }}</a></li>
+                {% else %}
+                <li><a href="{% url 'app:index' %}{{ item.id }}" class="collection-item" style="background: none; color: whitesmoke">&nbsp;&nbsp;{{ item.title }}</a><br/></li>
+                {% endif %}
             {% endfor %}
-        </ol>
+        </ul>
     {% else %}
         <strong>There are no available items!</strong>
     {% endif %}
-    {% if itemlistper %}
-        <h2>List of User items</h2>
-        <ol>
-                {% for item in itemlistper %}
-                <li> <a href="{% url 'app:index' %}{{ item.id }}"> {{ item.get_itemtype_display }} : {{ item.title }}</a></li>
-            {% endfor %}
-                {% endif %}
-</ol>
+    </div><br/><hr/><br/>
     {% if luckynum  %}
-        <p>Your lucky number is: {{ luckynum }}</p>
+        <h4 style="color: whitesmoke; text-align: center">Your lucky number is: {{ luckynum }}</h4>
         {% else %}
-        <p>Your lucky number is: {{ luckynum }}</p>
+        <h4 style="color: whitesmoke; text-align: center">Your lucky number is: {{ luckynum }}</h4>
     {% endif %}
 {% endblock %}

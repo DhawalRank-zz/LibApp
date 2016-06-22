@@ -1,8 +1,14 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
+    <div class="collection">
+    <ul type="">
         {% for slist in itemlist %}
-    <li><a href="{% url 'app:suggestions' %}{{ slist.id }}" style="text-decoration: underline; font-size: 130%">{{ slist.title }}</a></li>
+            {% if slist.type == 1 %}
+    <li><a href="{% url 'app:suggestions' %}{{ slist.id }}" class="collection-item" style="background: none; color: whitesmoke"><i class="material-icons" style="color: #e1f5fe">library_books</i>&nbsp;&nbsp;{{ slist.title }}</a></li>
+            {% else %}
+            <li><a href="{% url 'app:suggestions' %}{{ slist.id }}" class="collection-item" style="background: none; color: whitesmoke"><i class="material-icons" style="color: #e1f5fe">play_circle_outline</i>&nbsp;&nbsp;{{ slist.title }}</a></li>
+            {% endif %}
     {% endfor %}<br/>
-
-
+</ul>
+</div>
 {% endblock %}

@@ -1,9 +1,12 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
-    <div style="width: 18%">
+    <div align="center">
+    <div style="width: 18%; padding-top: 20px" align="center">
+    <div class="col s12 z-depth-5 card-panel" style="height: 400px;">
+    <h4 class="flow-text" style="padding-bottom: 40px">Search it!!</h4>
     {% if notfound == True %}
         <ul>
-        <li><p style="font-size: small">Book not found</p></li>
+        <li><p style="font-size: small">Item not found</p></li>
         </ul>
     {% endif %}
     {% if notinput %}
@@ -16,39 +19,48 @@
         {{ form.as_p }}<br/>
         <input type="submit" class="btn btn-primary" value="Submit"><br/>
     </form>
-      </div>
-    <h3>Search Results:</h3>
+        </div>
+        </div>
+      </div><br/><br/>
+    <h4 style="padding-left: 5px; color: whitesmoke">Search Results:</h4>
+    <div class="collection flow-text" style="font-size: 20px"><br/>
         {% if bookob and dvdob%}
+            <div style="padding-left: 15px">
             Total {{ bookob.count|add:dvdob.count }} results. <br/><br/>
+            <div style="padding-left: 10px">
                 Search returned: {{ bookob.count }} books.<br/>
-                <ol>
+                <ul type="">
                 {% for book in bookob %}
-                    <li><a href="{% url 'app:index' %}{{ book.id }}" style="text-decoration: underline; font-size: 130%"><cite>{{ book.title }}</cite></a><br/></li>
+                    <li><a href="{% url 'app:index' %}{{ book.id }}" class="collection-item" style="background: none; color: whitesmoke"><i class="material-icons" style="color: whitesmoke">library_books</i>&nbsp;&nbsp;{{ book.title }}</a></li>
                 {% endfor %}
-                </ol>
+                </ul>
                 Search returned: {{ dvdob.count }} dvds.<br/>
-                <ol>
+                <ul type="">
                 {% for dvd in dvdob %}
-                    <li><a href="{% url 'app:index' %}{{ dvd.id }}" style="text-decoration: underline; font-size: 130%"><cite>{{ dvd.title }}</cite></a><br/></li>
+                    <li><a href="{% url 'app:index' %}{{ dvd.id }}"  class="collection-item" style="background: none; color: whitesmoke"><i class="material-icons" style="color: whitesmoke">play_circle_outline</i>&nbsp;&nbsp;{{ dvd.title }}</a></li>
                 {% endfor %}
-                </ol>
+                </ul>
 
         {% elif bookob and not dvdob%}
             Search returned: {{ bookob.count }} books.<br/>
-            <ol>
+            <ul type="">
             {% for book in bookob %}
-                <li><a href="{% url 'app:index' %}{{ book.id }}" style="text-decoration: underline; font-size: 130%"><cite>{{ book.title }}</cite></a><br/></li>
+                <li><a href="{% url 'app:index' %}{{ book.id }}" class="collection-item" style="background: none; color: whitesmoke"><i class="material-icons" style="color: whitesmoke">library_books</i>&nbsp;&nbsp;{{ book.title }}</a></li>
             {% endfor %}
-            </ol>
+            </ul>
             {% elif not bookob and dvdob %}
             Search returned: {{ dvdob.count }} DVDs.<br/>
             <ol>
             {% for dvd in dvdob %}
-                <li><a href="{% url 'app:index' %}{{ dvd.id }}" style="text-decoration: underline; font-size: 130%"><cite>{{ dvd.title }}</cite></a><br/></li>
+                <li><a href="{% url 'app:index' %}{{ dvd.id }}" class="collection-item" style="background: none; color: whitesmoke"><i class="material-icons" style="color: whitesmoke">play_circle_outline</i>&nbsp;&nbsp;{{ dvd.title }}</a></li>
             {% endfor %}
             </ol>
         {% else %}
             <p style="font-size: 130%">No results to display</p>
         {% endif %}
+    </div>
+    </div>
+</div>
+
 
 {% endblock %}

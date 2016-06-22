@@ -1,14 +1,22 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
 {% if itemob and request.user.username %}
-    <h2>Checked out items</h2><br/>
-    <ol>
-    {% for item in itemob %}
-        <li><a href="/app/myitems/{{ item.id }}"> {{ item.title }}</a></li>
-    {% endfor %}
-    </ol>
-    {% else %}
-    <h3>You need to Login to access this page</h3>
-{% endif %}
+    <h5 class="flow-text" style="color: whitesmoke">Checked out items</h5><br/>
+    <div class="collection">
 
+    <ul type="">
+    {% for item in itemob %}
+        {% if item.itemtype == 'Book' %}
+        <li><a href="/app/myitems/{{ item.id }}" class="collection-item" style="background: none; color: whitesmoke"><i class="material-icons" style="color: #e1f5fe">library_books</i>&nbsp;&nbsp;{{ item.title }}</a></li>
+        {% elif item.itemtype == 'DVD' %}
+         <li><a href="/app/myitems/{{ item.id }}" class="collection-item" style="background: none; color: whitesmoke"><i class="material-icons" style="color: #e1f5fe">play_circle_outline</i>&nbsp;&nbsp;{{ item.title }}</a></li>
+            {% else %}
+            <li><a href="/app/myitems/{{ item.id }}" class="collection-item" style="background: none; color: whitesmoke">{{ item.title }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+    {% else %}
+    <h4 class="flow-text" style="color: whitesmoke">You need to Login to access this page</h4>
+{% endif %}
+    </div>
 {% endblock %}

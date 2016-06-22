@@ -1,6 +1,8 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
-    <div style="padding-left: 40%">
+    <div align="center">
+    <div style=" width: 22%"><br/>
+     <div class="col s12 z-depth-5 card-panel" style="height: 850px">
     {% if form.errors %}
     {% for field in form %}
         {% for error in field.errors %}
@@ -16,14 +18,14 @@
     {% endfor %}
 {% endif %}
         {% if record_added == 'True' %}
-   <div id="alert1" class="alert alert-success fade in" style="width: 30%; border-radius: 5px" align="center">
+   <div id="alert1" class="alert alert-success fade in" style=" border-radius: 5px" align="center">
    <a href="/app/myacct/" id="close1" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Record Updated.</strong>
     </div>
     {% endif %}
-    <form action="." method="post" id="aclass">{% csrf_token %}
-    <div class="form-control" style="width: 30%;  height: 690px; border-radius: 5px" align="center">
-        <p style="font-size: 25px; font-weight: bold">Edit Profile</p><br>
+    <form action="." method="post" id="aclass" enctype="multipart/form-data">{% csrf_token %}
+    <div style="width: 60%;  height: 690px; border-radius: 5px" align="center">
+        <p style="text-align: center; font-size: 35px" class="flow-text">Edit Profile</p><br>
         <div class="form-group">
             <input type="text" name="first_name" id="first_name" value="{{ values.first_name }}" placeholder="Enter First Name" class="form-control">
         </div><br>
@@ -45,11 +47,16 @@
         <div class="form-group">
     <input type="text" name="phone" id="phone" value="{{ values.phone }}" placeholder="Enter Phone" class="form-control">
         </div><br>
+        <div class="form-group">
+    <input type="file" name="imageloc" id="imageloc" value="" class="validate">
+        </div><br>
         <br>
         <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg" value="Submit">Submit</button>
     </div>
         </div>
     </form>
+    </div>
+    </div>
     </div>
 {% endblock %}

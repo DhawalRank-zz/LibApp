@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
 from django.core import serializers
-from app.forms import SuggestionForm, SearchlibForm, LoginForm
+from app.forms import SuggestionForm, SearchlibForm, LoginForm, Register
 from app.models import Book, Dvd, Libuser, Libitem, Suggestion
 
 
@@ -22,8 +22,10 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
+            userob = Libuser.objects.get(username=request.user.username)
             luckynum = randint(0, 9)
             request.session['luckynum'] = luckynum
+            request.session['profilepic'] = userob.profilepic.url
             request.session.set_expiry(3600)
             userob = Libuser.objects.filter(username=request.user.username)
             request.session['userob'] = serializers.serialize('json', userob)
@@ -47,14 +49,18 @@ def index(request):
     itemlist = Libitem.objects.all().order_by('title')[:10]
     if luckynum:
         if request.user.username:
+            libuserob = Libuser.objects.get(username=request.user.username)
             itemlistper = Libitem.objects.filter(user_id__exact=request.user.id)
-            return render(request, "libapp/index.html", {'itemlist': itemlist, 'itemlistper': itemlistper, 'luckynum': luckynum})
+            return render(request, "libapp/index.html",
+                          {'itemlist': itemlist, 'itemlistper': itemlistper, 'luckynum': luckynum,
+                           'libuserob': libuserob})
     else:
-        return render(request, "libapp/index.html", {'itemlist': itemlist, 'luckynum': luckynum})
+        return render(request, "libapp/index.html",
+                      {'itemlist': itemlist, 'luckynum': luckynum})
 
 
 def about(request):
-    about_visits = request.session.get('about_visits', 1)
+    about_visits = request.session.get('about_visits', True)
     if about_visits:
         about_visits += 1
         request.session['about_visits'] = about_visits
@@ -75,7 +81,8 @@ def detail(request, item_id):
 
 
 def register(request):
-    return render(request, 'libapp/register.html')
+    form = Register()
+    return render(request, 'libapp/register.html', {'form': form})
 
 
 def suggestions(request):
@@ -162,20 +169,38 @@ def suggestionsdet(request, item_id):
 def myacct(request):
     userob = Libuser.objects.get(id=request.user.id)
     d = {'first_name': userob.first_name, 'last_name': userob.last_name, 'emailid': userob.email,
-         'address': userob.address, 'city': userob.city, 'province': userob.province, 'phone': userob.phone}
+         'address': userob.address, 'city': userob.city, 'province': userob.province, 'phone': userob.phone,
+         'imageloc': userob.profilepic}
     if request.method == 'POST':
-        userob = Libuser.objects.filter(id=request.user.id).update(
-            first_name=request.POST['first_name'],
-            last_name=request.POST['last_name'],
-            email=request.POST['emailid'],
-            address=request.POST['address'],
-            city=request.POST['city'],
-            province=request.POST['province'],
-            phone=request.POST['phone']
-        )
+        input_file = request.FILES.get('imageloc', 0)
+        if input_file:
+            new_file = open('E:/University of Windsor/Inter 2016/Python/Labs/Lab2Django/app/static/ProfilePics/' + str(input_file), "w+")
+            new_file.write(input_file.read())
+            imageloc = 'app/static/ProfilePics/' + str(input_file)
+            userob = Libuser.objects.filter(id=request.user.id).update(
+                first_name=request.POST['first_name'],
+                last_name=request.POST['last_name'],
+                email=request.POST['emailid'],
+                address=request.POST['address'],
+                city=request.POST['city'],
+                province=request.POST['province'],
+                phone=request.POST['phone'],
+                profilepic=imageloc,
+            )
+        else:
+            userob = Libuser.objects.filter(id=request.user.id).update(
+                first_name=request.POST['first_name'],
+                last_name=request.POST['last_name'],
+                email=request.POST['emailid'],
+                address=request.POST['address'],
+                city=request.POST['city'],
+                province=request.POST['province'],
+                phone=request.POST['phone'],
+            )
         userob = Libuser.objects.get(id=request.user.id)
         d = {'first_name': userob.first_name, 'last_name': userob.last_name, 'emailid': userob.email,
-             'address': userob.address, 'city': userob.city, 'privince': userob.province, 'phone': userob.phone}
+             'address': userob.address, 'city': userob.city, 'privince': userob.province, 'phone': userob.phone,
+             'imageloc': userob.profilepic}
         d1 = 'True'
         return render(request, 'libapp/myacct.html', {"values": d, "record_added": d1})
     else:
