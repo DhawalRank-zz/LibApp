@@ -2,58 +2,26 @@
 {% block body_block %}
     <div align="center">
     <div style=" width: 22%"><br/>
-     <div class="col s12 z-depth-5 card-panel" style="height: 850px">
-    {% if form.errors %}
-    {% for field in form %}
-        {% for error in field.errors %}
-            <div class="alert alert-error">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-error">
-            <strong>{{ error|escape }}</strong>
-        </div>
-    {% endfor %}
-{% endif %}
-        {% if record_added == 'True' %}
-   <div id="alert1" class="alert alert-success fade in" style=" border-radius: 5px" align="center">
-   <a href="/app/myacct/" id="close1" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Record Updated.</strong>
-    </div>
+     <div class="col s12 z-depth-5 card-panel">
+    <form action="/app/myacct/" method="post" id="aclass" enctype="multipart/form-data">{% csrf_token %}
+    <div style="width: 70%; border-radius: 5px" align="center">
+        <p style="text-align: center; font-size: 35px" class="flow-text">Edit Profile</p>
+            {% if added == True %}
+        <div id="alert1" class="card-panel white lighten-2 green-text" style="line-height: 0; width: 65%;">
+   <a href="/app/myacct/" id="close1" class="close green-text" style="vertical-align: inherit; padding-bottom: 120px" data-dismiss="alert" aria-label="close">&times;</a>
+        Record Updated.
+    </div><br/>
     {% endif %}
-    <form action="." method="post" id="aclass" enctype="multipart/form-data">{% csrf_token %}
-    <div style="width: 60%;  height: 690px; border-radius: 5px" align="center">
-        <p style="text-align: center; font-size: 35px" class="flow-text">Edit Profile</p><br>
+        {% if failed == True%}
+        <div id="alert1" class="card-panel white lighten-2 red-text" style="line-height: 0; width: 65%;">
+   <a href="/app/myacct/" id="close1" class="close" style="vertical-align: inherit; padding-bottom: 120px" data-dismiss="alert" aria-label="close">&times;</a>
+        Record was not added.
+    </div><br/>
+    {% endif %}
         <div class="form-group">
-            <input type="text" name="first_name" id="first_name" value="{{ values.first_name }}" placeholder="Enter First Name" class="form-control">
-        </div><br>
-        <div class="form-group">
-            <input type="text" name="last_name" id="last_name" value="{{ values.last_name }}" placeholder="Enter Last Name" class="form-control">
-        </div><br>
-        <div class="form-group">
-            <input type="text" name="emailid" id="emailid" value="{{ values.emailid }}" placeholder="Enter Email ID" class="form-control">
-        </div><br>
-        <div class="form-group">
-        <input type="text" name="address" id="address" value="{{ values.address }}" placeholder="Enter Address" class="form-control">
-        </div><br>
-        <div class="form-group">
-        <input type="text" name="city" id="city" value="{{ values.city }}" placeholder="Enter City" class="form-control">
-        </div><br>
-        <div class="form-group">
-    <input type="text" name="province" id="province" value="{{ values.province }}" placeholder="Enter Province" class="form-control">
-        </div><br>
-        <div class="form-group">
-    <input type="text" name="phone" id="phone" value="{{ values.phone }}" placeholder="Enter Phone" class="form-control">
-        </div><br>
-        <div class="form-group">
-    <input type="file" name="imageloc" id="imageloc" value="" class="validate">
-        </div><br>
-        <br>
-        <div class="form-group">
+            {{ form.as_p }}<br/>
         <button type="submit" class="btn btn-primary btn-lg" value="Submit">Submit</button>
-    </div>
+        </div>
         </div>
     </form>
     </div>

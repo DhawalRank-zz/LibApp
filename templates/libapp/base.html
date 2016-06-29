@@ -27,7 +27,7 @@
     </head>{% endblock %}
 
 
-<body class="cyan">
+<body background="/app/static/css/background1.png">
     <div class="navbar-fixed">
          <nav class="nav-wrapper" style="padding-left: 0">
             <div class="container-fluid">
@@ -35,20 +35,29 @@
                  <li><a href="{% url 'app:index' %}" class="flow-text">Home</a></li>
                  <li><a href = "{% url 'app:about' %}" class="flow-text">About</a></li>
                          <li><a href = "{% url 'app:myitems' %}" class="flow-text">My Items</a></li>
-                    <li><a href = "{% url 'app:suggestions' %}" class="flow-text">Suggestions</a></li>
-                    <li><a href = "{% url 'app:newitem' %}" class="flow-text">Add Sugggestions</a></li>
                     <li><a href = "{% url 'app:searchitem' %}" class="flow-text">Search the library</a></li>
+                         <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><span class="flow-text" style="font-size: 180%">Suggestions</span><i class="material-icons right">arrow_drop_down</i></a>
+                         <ul id="dropdown1" class="dropdown-content active" style="width: 143px; position: absolute; top: 0; left: 920px; opacity: 1; display: none;">
+                    <li><a href = "{% url 'app:suggestions' %}" class="flow-text">Suggestested Items</a></li>
+                    <li><a href = "{% url 'app:newitem' %}" class="flow-text">New Sugggestion</a></li>
+                             </ul>
+                         </li>
                      </ul>
                 {% if request.user.username %}
                     <ul class="right">
-                    <li>
-                    <span class="span-logo"><img src="/{{ request.session.profilepic }}" class="circular-pic" width="40" height="40"/></span>
+                    <li style="padding-top: 2.5%">
+                        {% for users in userob %}
+                             <span class="span-logo"><img class="circular-pic" src="/{{ users.profilepic }}" width="50" height="50"/></span>
+                        {% endfor %}
                         </li>
                         <li>
-                            <a href="{% url 'app:myacct' %}" class="flow-text">{{ request.user.first_name }}&nbsp;{{ request.user.last_name }}</a>
-                        </li>
+                             <li id="myaccount"><a class="dropdown-button1" href="#!" data-activates="dropdown2"><span class="flow-text" style="font-size: 180%">{{ request.user.first_name }}&nbsp;{{ request.user.last_name }}</span><i class="material-icons right">arrow_drop_down</i></a>
+                    <ul id="dropdown2" class="dropdown-content active" style="width: 143px; position: absolute; top: 0; left: 920px; opacity: 1; display: none;">
+                        <li><a href="{% url 'app:myacct' %}">Edit Profile</a></li>
+                        <li><a href="{% url 'app:setpwd' %}">Change Password</a></li>
                         <li><a href="{% url 'app:logout' %}" class="flow-text">Logout</a></li>
                     </ul>
+                    </li>
                  {% else %}
                      <ul class="right">
                          <li><a href = "{% url 'app:login' %}" class="flow-text">Login</a></li>
@@ -73,12 +82,15 @@
         </div>
 
     <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
       <script>
      $(document).ready(function() {
         $('select').material_select();
     });
+          $(".dropdown-button").dropdown();
+          $(".dropdown-button1").dropdown();
   </script>
 </body>
 </html>

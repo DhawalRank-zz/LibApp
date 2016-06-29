@@ -1,6 +1,6 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
-{% if itemob and request.user.username %}
+{% if itemob or request.user.username %}
     <h5 class="flow-text" style="color: whitesmoke">Checked out items</h5><br/>
     <div class="collection">
 

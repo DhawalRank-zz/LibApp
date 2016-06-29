@@ -1,16 +1,36 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
-
-    <h3>Details</h3>
+ <div align="center">
+    <div align="center">
+    <span style="color: whitesmoke">
+    <table class="bordered responsive-table" style="width: 30%;">
+    <tbody>
+    <tr><td></td><td></td></tr>
     {% if dvd %}
         {% for dvds in dvd %}
-            Title: {{ dvds.title }}<br/>Type: {{ dvds.get_itemtype_display }}<br/>Publication Year: {{ dvds.pubyr }}<br/>Duedate: {{ dvds.duedate }}<br/>Maker: {{ dvds.maker }}<br/>
-            Duration: {{ dvds.duration }}<br/>Rating:{{ dvds.rating }}<br/><br/><br/>
+            <h3>{{ dvds.title }}</h3>
+            <tr><td>Title:</td><td>{{ dvds.title }}</td></tr><br/>
+            <tr><td>Type:</td><td>{{ dvds.get_itemtype_display }}</td></tr><br/>
+            <tr><td>Publication Year:</td><td>{{ dvds.pubyr }}</td></tr><br/>
+            <tr><td>Duedate:</td><td>{{ dvds.duedate }}</td></tr><br/>
+            <tr><td>Maker:</td><td>{{ dvds.maker }}</td></tr><br/>
+            <tr><td>Duration:</td><td>{{ dvds.duration }}</td></tr><br/>
+            <tr><td>Rating:</td><td>{{ dvds.rating }}</td></tr><br/><br/><br/>
     {% endfor %}
     {% else %}
         {% for books in book %}
-            Title: {{ books.title }}<br/>Type: {{ books.get_itemtype_display }}<br/>Publication Year: {{ books.pubyr }}<br/>Duedate: {{ books.duedate }}<br/>Author: {{ books.author }}<br/>
-            Category: {{ books.get_category_display }}<br/><br/><br/>
+            <h3>{{ books.title }}</h3>
+            <tr><td>Title:</td><td>{{ books.title }}</td></tr><br/>
+            <tr><td>Type:</td><td>{{ books.get_itemtype_display }}</td></tr><br/>
+            <tr><td>Publication Year:</td><td>{{ books.pubyr }}</td></tr><br/>
+            <tr><td>Duedate:</td><td>{{ books.duedate }}</td></tr><br/>
+            <tr><td>Author:</td><td>{{ books.author }}</td></tr><br/>
+            <tr><td>Category:</td><td>{{ books.get_category_display }}</td></tr><br/><br/><br/>
     {% endfor %}
     {% endif %}
+    </tbody>
+    </table>
+ </span>
+    </div>
+ </div>
 {% endblock %}

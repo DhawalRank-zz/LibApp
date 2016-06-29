@@ -1,0 +1,57 @@
+{% extends 'libapp/base.html' %}
+{% block body_block %}
+    <div style="padding-top: 3%" align="center">
+    <div style="width: 30%;  height: 400px; border-radius: 5px" align="center">
+     <div class="col s12 z-depth-5 card-panel">
+<form action="." method="post" id="changepwd">{% csrf_token %}
+    <h4>Reset Password</h4><br/>
+    {% if emailSent == True %}
+        <div id="alert1" class="card-panel white lighten-2 green-text" style="line-height: 0; width: 65%;">
+   <a href="/app/forgotpwd/" id="close1" class="close green-text" style="vertical-align: inherit; padding-bottom: 120px" data-dismiss="alert" aria-label="close">&times;</a>
+        Password Sent.
+    </div><br/>
+    {% endif %}
+                <div class="form-group" style="width: 80%;">
+                    <input type="text" id="username" name="username" placeholder="Enter Username for retrieving password" required/>
+                    <span id="messages"></span><p id="result" style="display: none; visibility: hidden"></p>
+                    </div><br/>
+                <div class="form-group" style="width: 80%">
+                    <button type="submit" id="subuname" name="subuname" class="btn btn-primary">Request Password</button>
+                </div>
+            </form>
+         </div>
+        </div>
+        </div>
+          <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     <script type="text/javascript">
+    var previous_username = '';
+    var in_ajax = 0;
+    function checkUsername() {
+        var username = $("#username").val();
+        if ((previous_username != username) && (username != '') && (in_ajax != 1)) {
+                in_ajax = 1;
+                $("#result").load('/app/checkuname/', {username: username, csrfmiddlewaretoken: '{{ csrf_token }}'}, function() {in_ajax = 0;});
+            }
+            previous_username = username;
+    }
+     function checkValues() {
+            var val1 = document.getElementById('result').innerHTML;
+            if(val1 == 'True'){
+                document.getElementById('messages').innerHTML = 'Your password will be sent to your email.';
+             $('#subuname').removeAttr('disabled');
+            }
+            else if(val1 == 'False'){
+                document.getElementById('messages').innerHTML = 'Invalid username';
+                document.getElementById("subuname").disabled = true;
+                $('#subuname').attr('disabled','disabled');
+            }
+         else {
+
+            }
+        }
+    $(function() {
+            setInterval("checkUsername()", 10 );
+            setInterval("checkValues()", 10);
+        });
+    </script>
+{% endblock %}

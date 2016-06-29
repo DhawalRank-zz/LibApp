@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.html import format_html
 
 from app.models import Suggestion, Libuser, Libitem
 
@@ -18,7 +19,8 @@ class SuggestionForm(forms.ModelForm):
     title = forms.CharField(
         widget=forms.TextInput(
             attrs={'required': True, 'max_length': 100, 'class': 'validate', 'placeholder': 'Title'}), label="")
-    pubyr = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'validate', 'placeholder': 'Publication Year'}),
+    pubyr = forms.IntegerField(min_value=1900, max_value=2016,
+                               widget=forms.NumberInput(attrs={'class': 'validate', 'placeholder': 'Publication Year'}),
                                label="")
     type = forms.CharField(widget=forms.Select(choices=TYPE_CHOICES))
     cost = forms.IntegerField(
@@ -45,9 +47,28 @@ class LoginForm(forms.Form):
 class Register(forms.ModelForm):
     class Meta:
         model = Libuser
-        fields = ['username', 'password', 'password1', 'first_name', 'last_name', 'email', 'address', 'city', 'province',
-                  'profilepic']
-        labels = {'profilepic': 'Profile Picture'}
+        fields = ['username', 'password', 'password1', 'first_name', 'last_name', 'email', 'address', 'city',
+                  'province', 'phone', 'profilepic']
+        widgets = {
+            'password': forms.PasswordInput()}
 
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'validate'}), label="Password")
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'validate'}), label="Confirm Password")
+
+    def __init__(self, *args, **kwargs):
+        super(Register, self).__init__(*args, **kwargs)
+        for key in self.fields:
+            self.fields[key].required = True
+            self.fields[key].widget.attrs['required'] = 'required'
+            if self.fields[key].label:
+                self.fields[key].label += ' *'
+
+
+class MyAcct(forms.ModelForm):
+    class Meta:
+        model = Libuser
+        fields = ['first_name', 'last_name', 'email', 'address', 'city', 'province', 'phone', 'profilepic']
+
+    def __init__(self, *args, **kwargs):
+        super(MyAcct, self).__init__(*args, **kwargs)
+        for key in self.fields:
+            self.fields[key].required = True

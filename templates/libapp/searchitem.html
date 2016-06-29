@@ -2,17 +2,19 @@
 {% block body_block %}
     <div align="center">
     <div style="width: 18%; padding-top: 20px" align="center">
-    <div class="col s12 z-depth-5 card-panel" style="height: 400px;">
-    <h4 class="flow-text" style="padding-bottom: 40px">Search it!!</h4>
+    <div class="col s12 z-depth-5 card-panel">
+    <h4 class="flow-text">Search it!!</h4>
     {% if notfound == True %}
-        <ul>
-        <li><p style="font-size: small">Item not found</p></li>
-        </ul>
+       <div id="alert1" class="card-panel white lighten-2 red-text" style="line-height: 0; width: 65%;">
+   <a href="/app/searchitem/" id="close1" class="close red-text-text" style="vertical-align: inherit; padding-bottom: 120px" data-dismiss="alert" aria-label="close">&times;</a>
+        Item not found
+    </div><br/>
     {% endif %}
     {% if notinput %}
-       <ul>
-        <li><p style="font-size: small">No input provided for search.</p></li>
-        </ul>
+       <div id="alert1" class="card-panel white lighten-2 red-text" style="line-height: 0; width: 65%;">
+   <a href="/app/searchitem/" id="close1" class="close red-text-text" style="vertical-align: inherit; padding-bottom: 120px" data-dismiss="alert" aria-label="close">&times;</a>
+        No input given
+    </div><br/>
     {% endif %}
 
     <form action="." method="post">{% csrf_token %}

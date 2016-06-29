@@ -1,13 +1,5 @@
-.span-logo {
-    display: inline-block;
-    padding-top: 11px;
-    width: 35px;
-}
 .circular-pic{
-    border-radius: 20px;
-}
-.cyan {
-    background-color: whitesmoke !important;
+    border-radius: 50%;
 }
 .btnpink, .btnpink-large {
     text-decoration: none;
@@ -63,9 +55,6 @@
 }
 .nav, .nav-wrapper{
       background-color: black;
-}
-body{
-    background: url('/app/static/ProfilePics/asas4.jpg') no-repeat;
 }
 li{
     color: white;

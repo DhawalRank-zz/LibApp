@@ -1,0 +1,46 @@
+{% extends 'libapp/base.html' %}
+{% block body_block %}
+    <div style="padding-top: 3%" align="center">
+    <div style="width: 30%;  height: 400px; border-radius: 5px" align="center">
+     <div class="col s12 z-depth-5 card-panel">
+<form action="." method="post" id="changepwd">{% csrf_token %}
+    <h4>Change Password</h4><br/>
+    {% if changed == True %}
+        <div id="alert1" class="card-panel white lighten-2 green-text" style="line-height: 0; width: 65%;">
+   <a href="/app/setpwd/" id="close1" class="close green-text" style="vertical-align: inherit; padding-bottom: 120px" data-dismiss="alert" aria-label="close">&times;</a>
+        Password Changed.
+    </div><br/>
+    {% endif %}
+                <div class="form-group" style="width: 80%;">
+                    <p id = "pwddet" class="card-panel white lighten-2 red-text" style="width: 64%; line-height: 0; height: 12px; text-align: center" hidden></p>
+                    <input type="password" id="npassword" name="npassword" placeholder="Enter New Password" required/>
+                    <input type="password" id="cpassword" name="cpassword" placeholder="Confirm Password" required/>
+                    </div><br/>
+                <div class="form-group" style="width: 80%">
+                    <button type="submit" id="submit" name="submit" class="btn btn-primary">Change Password</button>
+                </div>
+            </form>
+         </div>
+        </div>
+        </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script type="text/javascript">
+    function checkPassword() {
+            var password = $("#npassword").val();
+            var confirmPassword = $("#cpassword").val();
+            if (password != confirmPassword && password != "") {
+                document.getElementById("pwddet").innerHTML = "Passwords do not match";
+                document.getElementById("pwddet").hidden = false;
+                document.getElementById("submit").disabled = true;
+            }
+            else {
+                document.getElementById("pwddet").innerHTML = "";
+                document.getElementById("pwddet").hidden = true;
+                document.getElementById("submit").disabled = false;
+            }
+        }
+    $(function() {
+            setInterval("checkPassword()", 10);
+        });
+</script>
+{% endblock %}

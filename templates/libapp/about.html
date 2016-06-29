@@ -1,7 +1,7 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
 <br/>
-    <div style="width: 26%; padding-left: 20px">
+    <div style="width: 26%; padding-left: 20px;float: left">
 <h4 style="color: whitesmoke; text-decoration: underline" class="flow-text">Our Vision</h4><br/>
 <h6 style="color: whitesmoke; padding-left: 20px" class="flow-text">Leddy Library continues to be known as an innovative community leader that inspires lifelong learning and literacy in a welcoming environment, while respecting and celebrating the unique diversity of Windsor.
 <br/><br/></h6>
@@ -9,6 +9,22 @@
 <h4 style="color: whitesmoke; text-decoration: underline" class="flow-text">Our Mission</h4><br/>
 <h6 style="color: whitesmoke; padding-left: 20px" class="flow-text">Leddy Library engages the students of University of Windsor by providing a community gathering place where the joy of reading, discovery and lifelong learning is promoted and encouraged.</h6>
 <br/>
+        <h5 style="color: whitesmoke; padding-left: 10px" class="flow-text">No of hits: {{ about_visits }}</h5>
     </div>
-    <h5 style="color: whitesmoke; padding-left: 10px" class="flow-text">No of hits: {{ about_visits }}</h5>
+    <div style="float:right; color: whitesmoke; padding-right: 10%; width: 30%"><br/>
+            <h4 style="text-align: center">Hours of Operation</h4>
+       <table class="table-responsive bordered centered">
+           <tbody>
+           <tr><td></td><td></td></tr>
+        <tr><td>Monday</td><td>9:00 am-12 am</td></tr>
+        <tr><td>Tuesday</td><td>9:00 am-12 am</td></tr>
+        <tr><td>Wednesday</td><td>7:00 am-12 am</td></tr>
+            <tr><td>Thursday</td><td>7:00 am-12 am</td></tr>
+            <tr><td>Friday</td><td>7:00 am-12 am</td></tr>
+            <tr><td>Saturday</td><td>7:00 am-12 am</td></tr>
+            <tr><td>Sunday</td><td>7:00 am-12:00 am</td></tr>
+           </tbody>
+        </table>
+        </div>
+    </div>
 {% endblock %}

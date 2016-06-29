@@ -1,12 +1,23 @@
 {% extends 'libapp/base.html' %}
 {% block body_block %}
 {% for item in suggestionob %}
-    Title: {{ item.title }}<br/>
-    Publication Year: {{ item.pubyr }}<br>
-    Item Type: {{ item.get_type_display}}<br/>
-    Cost(CAD): {{ item.cost }}<br/>
-    Comments: {{ item.comments }}<br/>
-    Number of Suggestions: {{ item.num_interested }}<br/><br/>
-    <a href="/app/suggestions/" style="text-decoration: underline; font-size: 110%">Go Back</a>
+    <div align="center">
+    <div align="center">
+    <span style="color: whitesmoke">
+    <h3>{{ item.title }}</h3>
+    <table class="bordered responsive-table" style="width: 30%;">
+    <tbody>
+    <tr><td></td><td></td></tr>
+    <tr><td>Title:</td><td>{{ item.title }}</td></tr><br/>
+    <tr><td>Publication Year:</td><td>{{ item.pubyr }}</td></tr><br>
+    <tr><td>Item Type:</td><td>{{ item.get_type_display}}</td></tr><br/>
+    <tr><td>Cost(CAD):</td><td>{{ item.cost }}</td></tr><br/>
+    <tr><td>Comments:</td><td>{{ item.comments }}</td></tr><br/>
+    <tr><td>Number of Suggestions:</td><td>{{ item.num_interested }}</td></tr><br/><br/>
     {% endfor %}
+       </tbody>
+        </table>
+    </span>
+
+</div></div>
 {% endblock %}

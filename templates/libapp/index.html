@@ -18,9 +18,9 @@
         <strong>There are no available items!</strong>
     {% endif %}
     </div><br/><hr/><br/>
-    {% if luckynum  %}
-        <h4 style="color: whitesmoke; text-align: center">Your lucky number is: {{ luckynum }}</h4>
+    {% if request.session.luckynum  %}
+        <h4 style="color: whitesmoke; text-align: center">Your lucky number is: {{ request.session.luckynum }}</h4>
         {% else %}
-        <h4 style="color: whitesmoke; text-align: center">Your lucky number is: {{ luckynum }}</h4>
+        <h4 style="color: whitesmoke; text-align: center">Your lucky number is: 0</h4>
     {% endif %}
 {% endblock %}
